@@ -1,6 +1,6 @@
 import FoodClass as fc
 
-customer_id = input('Enter your customer ID: ')
+customer_id = int(input('Enter your customer ID: '))
 
 customer1 = fc.Customer(570, 'Danni Sellyar', '97 Mitchell Way Hewitt Texas 76712',
                         'dsellyarft@gmpg.org', '254-555-9362', False)
@@ -29,42 +29,43 @@ order_total = 0
 if customer1.get_id() == customer_id:
     print('Customer Name: ', customer1.get_name())
     print('Phone: ', customer1.get_phone_number())
-elif customer2.get_id() == customer_id:
-    print('customer Name: ', customer2.get_name())
+    if customer1.get_member_status == True:
+        cost1 = trans3.get_cost()
+        discount1 = float(cost1 * 0.2)
+        new_cost1 = float(cost1 - discount1)
+        cost2 = trans4.get_cost()
+        discount2 = float(cost2 * 0.2)
+        new_cost2 = float(cost2 - discount2)
+        total_cost = new_cost1 + new_cost2
+        print('Order Item: ', trans3.get_item_name(), "Price: $", new_cost1)
+        print('Order Item: ', trans4.get_item_name(), "Price: $", new_cost2)
+        print('Total Cost: ', total_cost)
+    else:
+        print('Order Item: ', trans3.get_item_name(),
+              'Price: ', trans3.get_cost())
+        print('Order Item: ', trans4.get_item_name(),
+              'Price: ', trans4.get_cost())
+        total_cost = trans3.get_cost() + trans4.get_cost()
+        print('Total Cost: ', total_cost)
+
+if customer2.get_id() == customer_id:
+    print('Customer Name: ', customer2.get_name())
     print('Phone: ', customer2.get_phone_number())
-else:
-    print('Invalid customer ID. Input valid ID')
-    customer_id = input('Enter your customer ID: ')
-
-# validating member status
-if customer1.get_member_status() == True:
-    cost1 = trans1.get_cost()
-    cost2 = trans1.get_cost()
-    discount1 = float(cost1 * 0.2)
-    new_cost1 = float(cost1 - discount1)
-    discount2 = float(cost2 * 0.2)
-    new_cost2 = float(cost2 - discount2)
-else:
-    cost1 = trans1.get_cost()
-    cost2 = trans2.get_cost()
-
-if customer2.get_member_status() == True:
-    cost3 = trans3.get_cost()
-    cost4 = trans4.get_cost()
-    discount3 = float(cost3 * 0.2)
-    new_cost3 = float(cost3 - discount3)
-    discount4 = float(cost4 * 0.2)
-    new_cost4 = float(cost4 - discount4)
-else:
-    cost3 = trans3.get_cost()
-    cost4 = trans4.get_cost()
-
-# display information
-if trans1 == customer1.get_id():
-    print('Order Item: ', trans1.get_item_name(), 'Price: ', new_cost1)
-elif trans2 == customer1.get_id():
-    print('Order Item: ', trans2.get_item_name(), 'Price: ', new_cost2)
-elif trans3 == customer2.get_id():
-    print('Order Item: ', trans3.get_item_name(), 'Price: ', new_cost3)
-elif trans4 == customer2.get_id():
-    print('Order Item: ', trans4.get_item_name(), 'Price: ', new_cost4)
+    if customer2.get_member_status == True:
+        cost3 = trans1.get_cost()
+        discount3 = float(cost3 * 0.2)
+        new_cost3 = float(cost3 - discount1)
+        cost4 = trans2.get_cost()
+        discount4 = float(cost4 * 0.2)
+        new_cost4 = float(cost4 - discount4)
+        total_cost = new_cost3 + new_cost4
+        print('Order Item: ', trans1.get_item_name(), "Price: $", new_cost3)
+        print('Order Item: ', trans2.get_item_name(), "Price: $", new_cost4)
+        print('Total Cost: ', total_cost)
+    else:
+        print('Order Item: ', trans1.get_item_name(),
+              'Price: ', trans1.get_cost())
+        print('Order Item: ', trans2.get_item_name(),
+              'Price: ', trans2.get_cost())
+        total_cost = trans1.get_cost() + trans2.get_cost()
+        print('Total Cost: ', total_cost)
